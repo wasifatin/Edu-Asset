@@ -1,0 +1,39 @@
+# EduAsset — Git Ignore Rules
+
+# Compiled Class files
+*.class
+out/
+bin/
+build/
+dist/
+*.jar
+!EduAsset.jar
+!EduAsset-sample.jar
+
+# Data storage & local backups
+data/*.dat
+backup/
+*.log
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# NetBeans IDE
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# VS Code
+.vscode/
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+.DS_Store
+

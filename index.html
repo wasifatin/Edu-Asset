@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduAsset — University Examination & Academic Assessment Management System</title>
+
+  <!-- Google Fonts: Urbanist & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Urbanist:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/eduasset_icon.png">
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ====================================================================
+       Ambient Floating Background Auras (Nimbra Natural Fluid Drift)
+       ==================================================================== -->
+  <div class="aura" aria-hidden="true">
+    <i class="aura__a"></i>
+    <i class="aura__b"></i>
+    <i class="aura__c"></i>
+    <i class="aura__d"></i>
+  </div>
+
+  <!-- Interactive Floating Chart Tooltip -->
+  <div class="charttip" id="chart-floating-tooltip" style="opacity: 0; pointer-events: none;"></div>
+
+  <!-- ====================================================================
+       1. Intro Splash Screen with Fluid Transition (Logo Only)
+       ==================================================================== -->
+  <div id="intro-splash-screen" class="intro-screen">
+    <div class="intro-glass-card intro-logo-only-card" title="Click to continue">
+      <div class="intro-logo-banner">
+        <img src="assets/eduasset_logo.jpg" alt="EduAsset Logo" class="intro-logo-img">
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       2. Sign In Portal for 4 Auditors
+       ==================================================================== -->
+  <div id="auth-portal-screen" class="auth-portal-screen">
+    <div class="auth-portal-center">
+
+      <!-- Auditor Role Selection Dropdown Menu (Matching User Screenshot & Glass Prototype) -->
+      <div class="role-dropdown-container" id="auth-role-dropdown-container">
+        <label class="dropdown-field-label" for="auth-role-select-btn">Auditor Role</label>
+        <div class="custom-select-box" id="auth-role-custom-select">
+          <button type="button" class="select-trigger-btn" id="auth-role-select-btn" aria-haspopup="listbox" aria-expanded="false">
+            <span class="trigger-label-group">
+              <span class="trigger-code" id="trigger-role-code">ADMIN</span>
+              <span class="trigger-sep">&middot;</span>
+              <span class="trigger-title" id="trigger-role-title">Examination Controller</span>
+            </span>
+            <svg class="svg-icon select-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          
+          <div class="select-dropdown-list" id="auth-role-dropdown-list" role="listbox">
+            <div class="select-option-item selected" data-role="ADMIN" data-code="ADMIN" data-title="Examination Controller" data-email="ashrafulislam.cse@diu.edu.bd" data-pass="admin123" data-name="Mr. Md. Ashraful Islam Talukder" role="option" aria-selected="true">
+              <div class="option-primary">
+                <span class="opt-code">ADMIN</span>
+                <span class="opt-sep">&middot;</span>
+                <span class="opt-name">Examination Controller</span>
+              </div>
+              <div class="opt-secondary">Mr. Md. Ashraful Islam Talukder &bull; Full Authority &amp; Result Publication</div>
+            </div>
+
+            <div class="select-option-item" data-role="COORDINATOR" data-code="COORD" data-title="Department Coordinator" data-email="dewan.cse@diu.edu.bd" data-pass="coord123" data-name="Dewan Mamun Raza" role="option" aria-selected="false">
+              <div class="option-primary">
+                <span class="opt-code">COORD</span>
+                <span class="opt-sep">&middot;</span>
+                <span class="opt-name">Department Coordinator</span>
+              </div>
+              <div class="opt-secondary">Dewan Mamun Raza &bull; Curriculum &amp; Exam Schedules</div>
+            </div>
+
+            <div class="select-option-item" data-role="TEACHER" data-code="TEACH" data-title="Faculty / Invigilator" data-email="prantoprotimchoudhury.cse@diu.edu.bd" data-pass="teach123" data-name="Pranto Protim Choudhury" role="option" aria-selected="false">
+              <div class="option-primary">
+                <span class="opt-code">TEACH</span>
+                <span class="opt-sep">&middot;</span>
+                <span class="opt-name">Faculty / Invigilator</span>
+              </div>
+              <div class="opt-secondary">Pranto Protim Choudhury &bull; Marks Registry &amp; Hall Supervision</div>
+            </div>
+
+            <div class="select-option-item" data-role="STUDENT" data-code="STU001" data-title="Student Examinee" data-email="252-15-869@diu.edu.bd" data-pass="student123" data-name="Fatin Sharhad" role="option" aria-selected="false">
+              <div class="option-primary">
+                <span class="opt-code">STU001</span>
+                <span class="opt-sep">&middot;</span>
+                <span class="opt-name">Student Examinee</span>
+              </div>
+              <div class="opt-secondary">Fatin Sharhad &bull; Semester Results, Transcripts &amp; Grievances</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Professional Sign-In Panel Matching Modern Enterprise Interface -->
+      <div class="container auth-panel-box">
+        <div class="auth-header">
+          <h2 class="auth-heading">Sign In to EduAsset</h2>
+          <p class="auth-subheading">University Examination &amp; Academic Assessment System</p>
+        </div>
+
+        <form class="form auth-form" id="eduasset-signin-form" action="javascript:void(0)">
+          <div class="auth-field-group">
+            <label class="auth-field-label" for="email">Institutional Email</label>
+            <div class="auth-input-wrapper">
+              <svg class="auth-field-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <input placeholder="e.g. ashrafulislam.cse@diu.edu.bd" id="email" name="email" type="email" class="input auth-input"
+                value="ashrafulislam.cse@diu.edu.bd" required autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="auth-field-group">
+            <div class="auth-label-row">
+              <label class="auth-field-label" for="password">Password</label>
+              <a href="javascript:void(0)" class="auth-forgot-link" id="auth-forgot-link">Forgot password?</a>
+            </div>
+            <div class="auth-input-wrapper">
+              <svg class="auth-field-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <input placeholder="Enter password" id="password" name="password" type="password" class="input auth-input"
+                value="admin123" required autocomplete="current-password" />
+            </div>
+          </div>
+
+          <button type="submit" class="login-button auth-submit-btn" id="btn-login-submit">
+            <span>Sign In to Workspace</span>
+            <svg class="auth-btn-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </form>
+
+        <div class="auth-divider">
+          <span class="auth-divider-line"></span>
+          <span class="auth-divider-text">Or sign in with</span>
+          <span class="auth-divider-line"></span>
+        </div>
+
+        <div class="social-account-container">
+          <div class="social-accounts">
+            <button type="button" class="social-button google" id="btn-social-google" title="Sign in with Google">
+              <svg viewBox="0 0 488 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="svg">
+                <path
+                  d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
+                </path>
+              </svg>
+            </button>
+            <button type="button" class="social-button apple" id="btn-social-apple" title="Sign in with Apple">
+              <svg viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="svg">
+                <path
+                  d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z">
+                </path>
+              </svg>
+            </button>
+            <button type="button" class="social-button twitter" id="btn-social-twitter" title="Sign in with X">
+              <svg viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="svg">
+                <path
+                  d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z">
+                </path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="auth-agreement-box">
+          <span>Protected by DIU Security Protocols &bull; </span>
+          <a href="javascript:void(0)" id="auth-agreement-link" class="auth-agreement-link">View User License</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="app-container">
+
+    <!-- ====================================================================
+       3. Main Dashboard Workspace
+       ==================================================================== -->
+    <aside class="sidebar" id="main-sidebar">
+      <div class="sidebar-header">
+        <div class="brand-wrapper">
+          <div class="brand-logo-icon">
+            <img src="assets/eduasset_icon.png" alt="EduAsset Logo" class="brand-logo-img">
+          </div>
+          <div class="brand-text-container">
+            <span class="brand-title">EduAsset</span>
+            <span class="brand-subtitle">Exam Administration</span>
+          </div>
+        </div>
+        <button class="btn-toggle-sidebar" id="btn-collapse-sidebar" title="Toggle Sidebar">
+          <svg class="svg-icon toggle-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <!-- Section: Workspace -->
+        <div class="nav-section-title">WORKSPACE</div>
+        <div class="nav-item active" data-screen="overview" data-roles="all" data-tooltip="Overview">
+          <span class="nav-icon" style="color: var(--primary-accent);">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="9" rx="1.5"></rect>
+              <rect x="14" y="3" width="7" height="5" rx="1.5"></rect>
+              <rect x="14" y="12" width="7" height="9" rx="1.5"></rect>
+              <rect x="3" y="16" width="7" height="5" rx="1.5"></rect>
+            </svg>
+          </span>
+          <span class="nav-label">Overview</span>
+        </div>
+        <div class="nav-item" data-screen="students" data-roles="ADMIN,COORDINATOR,TEACHER"
+          data-tooltip="Student Records">
+          <span class="nav-icon" style="color: var(--color-success);">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </span>
+          <span class="nav-label">Student Records</span>
+        </div>
+        <div class="nav-item" data-screen="departments" data-roles="ADMIN,COORDINATOR,TEACHER"
+          data-tooltip="Departments & Courses">
+          <span class="nav-icon" style="color: var(--color-warning);">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+          </span>
+          <span class="nav-label">Departments & Courses</span>
+        </div>
+
+        <!-- Section: Examination -->
+        <div class="nav-section-title">EXAMINATION</div>
+        <div class="nav-item" data-screen="examScheduling" data-roles="ADMIN,COORDINATOR"
+          data-tooltip="Exam Scheduling">
+          <span class="nav-icon" style="color: var(--color-danger);">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+              <circle cx="12" cy="15" r="2"></circle>
+            </svg>
+          </span>
+          <span class="nav-label">Exam Scheduling</span>
+        </div>
+        <div class="nav-item" data-screen="rooms" data-roles="ADMIN,COORDINATOR" data-tooltip="Rooms & Seating">
+          <span class="nav-icon" style="color: var(--color-info);">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+              <line x1="3" y1="9" x2="21" y2="9"></line>
+              <line x1="9" y1="21" x2="9" y2="9"></line>
+              <line x1="15" y1="9" x2="15" y2="21"></line>
+            </svg>
+          </span>
+          <span class="nav-label">Rooms & Seating</span>
+        </div>
+        <div class="nav-item" data-screen="attendance" data-roles="ADMIN,COORDINATOR,TEACHER" data-tooltip="Attendance">
+          <span class="nav-icon" style="color: var(--color-success);">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path>
+              <rect x="9" y="3" width="6" height="4" rx="1"></rect>
+              <path d="m9 14 2 2 4-4"></path>
+            </svg>
+          </span>
+          <span class="nav-label">Attendance</span>
+        </div>
+        <div class="nav-item" data-screen="invigilators" data-roles="ADMIN,COORDINATOR" data-tooltip="Invigilators">
+          <span class="nav-icon" style="color: var(--color-warning);">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+          </span>
+          <span class="nav-label">Invigilators</span>
+        </div>
+
+        <!-- Section: Academic -->
+        <div class="nav-section-title">ACADEMIC</div>
+        <div class="nav-item" data-screen="marks" data-roles="ADMIN,COORDINATOR,TEACHER"
+          data-tooltip="Marks & Assessment">
+          <span class="nav-icon" style="color: var(--primary-accent);">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+          </span>
+          <span class="nav-label">Marks & Assessment</span>
+        </div>
+        <div class="nav-item" data-screen="results" data-roles="all" data-tooltip="Results & Transcripts">
+          <span class="nav-icon" style="color: var(--color-success);">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="6"></circle>
+              <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
+            </svg>
+          </span>
+          <span class="nav-label">Results & Transcripts</span>
+        </div>
+        <div class="nav-item" data-screen="applications" data-roles="all" data-tooltip="Applications">
+          <span class="nav-icon" style="color: var(--color-warning);">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-6l-2 3h-4l-2-3H2"></path>
+              <path
+                d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z">
+              </path>
+            </svg>
+          </span>
+          <span class="nav-label">Applications</span>
+        </div>
+
+        <!-- Section: Insights -->
+        <div class="nav-section-title">INSIGHTS</div>
+        <div class="nav-item" data-screen="reports" data-roles="ADMIN,COORDINATOR" data-tooltip="Reports & Analytics">
+          <span class="nav-icon" style="color: var(--color-info);">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+          </span>
+          <span class="nav-label">Reports & Analytics</span>
+        </div>
+        <div class="nav-item" data-screen="history" data-roles="ADMIN,COORDINATOR,TEACHER,STUDENT" data-tooltip="Audit History">
+          <span class="nav-icon" style="color: var(--color-danger);">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </span>
+          <span class="nav-label">Audit History</span>
+        </div>
+
+        <!-- Section: Administration -->
+        <div class="nav-section-title">ADMINISTRATION</div>
+        <div class="nav-item" data-screen="users" data-roles="ADMIN" data-tooltip="User Management">
+          <span class="nav-icon" style="color: var(--color-danger);">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </span>
+          <span class="nav-label">User Management</span>
+        </div>
+        <div class="nav-item" data-screen="settings" data-roles="all" data-tooltip="Settings">
+          <span class="nav-icon" style="color: var(--text-secondary);">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+              </path>
+            </svg>
+          </span>
+          <span class="nav-label">Settings</span>
+        </div>
+      </nav>
+
+      <!-- Sidebar Footer: Active Profile -->
+      <div class="sidebar-footer">
+        <div class="user-avatar-circle">AT</div>
+        <div class="user-meta-info">
+          <span class="user-name-text" id="current-user-name">Mr. Md. Ashraful Islam Talukder</span>
+          <span class="user-role-badge" id="current-user-role">Examination Controller</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ====================================================================
+       2. Main Content Wrapper
+       ==================================================================== -->
+    <main class="main-wrapper">
+
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="current-screen-title" id="screen-title-text">Examination Dashboard Overview</h1>
+        </div>
+        <div class="topbar-right">
+          <!-- Live Search Input -->
+          <div class="search-bar-top">
+            <span class="search-icon-pos">
+              <svg class="svg-icon search-svg" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </span>
+            <input type="text" class="search-input" placeholder="Search system...">
+          </div>
+
+          <!-- Audit Trail Quick Access Button -->
+          <button type="button" class="topbar-audit-btn" onclick="switchScreen('history')" title="View History of Every Audit">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>Audit Trail</span>
+            <span class="audit-counter-badge" id="topbar-audit-badge">0</span>
+          </button>
+
+          <!-- Topbar Custom Role Dropdown (Matching Screenshot) -->
+          <div class="topbar-role-dropdown" id="topbar-role-dropdown">
+            <button type="button" class="topbar-role-btn" id="topbar-role-btn" aria-haspopup="listbox" aria-expanded="false" title="Switch User Role Persona">
+              <span class="role-pulse-indicator"></span>
+              <span id="topbar-role-label">ADMIN &middot; Controller</span>
+              <svg class="svg-icon topbar-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="topbar-role-menu" id="topbar-role-menu" role="listbox">
+              <div class="topbar-role-opt selected" data-role="ADMIN" role="option">
+                <span class="opt-code">ADMIN</span> &middot; <span class="opt-title">Examination Controller</span>
+              </div>
+              <div class="topbar-role-opt" data-role="COORDINATOR" role="option">
+                <span class="opt-code">COORD</span> &middot; <span class="opt-title">Department Coordinator</span>
+              </div>
+              <div class="topbar-role-opt" data-role="TEACHER" role="option">
+                <span class="opt-code">TEACH</span> &middot; <span class="opt-title">Faculty / Invigilator</span>
+              </div>
+              <div class="topbar-role-opt" data-role="STUDENT" role="option">
+                <span class="opt-code">STU001</span> &middot; <span class="opt-title">Student Examinee</span>
+              </div>
+            </div>
+            <!-- Hidden native select for script compatibility -->
+            <select class="role-select-pill" id="role-select-box" style="display: none;">
+              <option value="ADMIN">Controller (Admin)</option>
+              <option value="COORDINATOR">Dept Coordinator</option>
+              <option value="TEACHER">Faculty (Teacher)</option>
+              <option value="STUDENT">Student (STU001)</option>
+            </select>
+          </div>
+
+          <!-- Sign Out / Switch Persona Button -->
+          <button class="icon-btn" id="btn-signout-portal" title="Sign Out & Return to Sign In">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area (Card Panels) -->
+      <div class="content-area">
+
+        <!-- ================================================================
+           PANEL 1: Dashboard Overview
+           ================================================================ -->
+        <section class="module-panel active-panel" id="panel-overview">
+          <!-- KPI Cards Grid -->
+          <div class="kpi-grid-row">
+            <div class="stat-card">
+              <div class="stat-card-accent-bar accent-blue"></div>
+              <div class="stat-label-title">Total Enrolled Students</div>
+              <div class="stat-value-big" id="kpi-total-students">5</div>
+              <div class="stat-desc-sub">Across degree programs</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-accent-bar accent-azure"></div>
+              <div class="stat-label-title">Total Examinations</div>
+              <div class="stat-value-big" id="kpi-total-exams">3</div>
+              <div class="stat-desc-sub">Midterm & Final sessions</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-accent-bar accent-green"></div>
+              <div class="stat-label-title">Scheduled Sessions</div>
+              <div class="stat-value-big" id="kpi-scheduled-exams">3</div>
+              <div class="stat-desc-sub">Upcoming confirmed slots</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-accent-bar accent-green"></div>
+              <div class="stat-label-title">Published Results</div>
+              <div class="stat-value-big" id="kpi-published-results">3</div>
+              <div class="stat-desc-sub">Official student transcripts</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-accent-bar accent-amber"></div>
+              <div class="stat-label-title">Pending Results</div>
+              <div class="stat-value-big" id="kpi-pending-results">0</div>
+              <div class="stat-desc-sub">Awaiting release authorization</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-accent-bar accent-red"></div>
+              <div class="stat-label-title">Pending Grievances</div>
+              <div class="stat-value-big" id="kpi-pending-apps">2</div>
+              <div class="stat-desc-sub">Recheck & retake requests</div>
+            </div>
+          </div>
+
+          <!-- 2-Column Split: Recent Timetable + Recent Grievances -->
+          <div class="two-col-grid">
+            <!-- Recent Exams -->
+            <div class="card">
+              <div class="card-header-bar">
+                <span class="card-title-text">
+                  <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  Upcoming Examination Timetable
+                </span>
+                <button class="btn btn-primary btn-sm" onclick="switchScreen('examScheduling')">
+                  <svg class="svg-icon btn-svg" viewBox="0 0 24 24" width="13" height="13" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                  View All
+                </button>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Exam ID</th>
+                      <th>Course</th>
+                      <th>Date</th>
+                      <th>Slot</th>
+                      <th>Hall</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="overview-recent-exams-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Recent Applications -->
+            <div class="card">
+              <div class="card-header-bar">
+                <span class="card-title-text">
+                  <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 12h-6l-2 3h-4l-2-3H2"></path>
+                    <path
+                      d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z">
+                    </path>
+                  </svg>
+                  Active Student Grievances & Rechecks
+                </span>
+                <button class="btn btn-secondary btn-sm" onclick="switchScreen('applications')">Review All</button>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>App ID</th>
+                      <th>Student</th>
+                      <th>Category</th>
+                      <th>Course</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="overview-recent-apps-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+           PANEL 2: Student Directory
+           ================================================================ -->
+        <section class="module-panel" id="panel-students">
+          <div class="card">
+            <div class="card-header-bar">
+              <span class="card-title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Student Directory & Academic Standing
+              </span>
+              <div class="card-controls">
+                <input type="text" id="student-search-input" class="search-input" placeholder="Search by name or ID..."
+                  oninput="renderStudents()">
+                <select id="student-dept-filter" class="select-control" onchange="renderStudents()">
+                  <option value="ALL">All Departments</option>
+                  <option value="CSE">CSE</option>
+                  <option value="SWE">SWE</option>
+                  <option value="EEE">EEE</option>
+                </select>
+                <button class="btn btn-primary" onclick="openModal('modal-add-student')">
+                  <svg class="svg-icon btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Add Student
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Student ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Program</th>
+                    <th>Semester</th>
+                    <th>Contact</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="students-table-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+           PANEL 3: Departments & Courses
+           ================================================================ -->
+        <section class="module-panel" id="panel-departments">
+          <div class="card">
+            <div class="card-header-bar">
+              <span class="card-title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+                Curriculum Courses & Faculty Allocations
+              </span>
+              <div class="card-controls">
+                <button class="btn btn-primary" onclick="openModal('modal-add-course')">
+                  <svg class="svg-icon btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Add Course
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Course Code</th>
+                    <th>Course Title</th>
+                    <th>Department</th>
+                    <th>Credits</th>
+                    <th>Semester</th>
+                    <th>Assigned Teacher</th>
+                    <th>Enrolled</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="courses-table-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header-bar">
+              <span class="card-title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21h18"></path>
+                  <path d="M9 8h1"></path>
+                  <path d="M9 12h1"></path>
+                  <path d="M9 16h1"></path>
+                  <path d="M14 8h1"></path>
+                  <path d="M14 12h1"></path>
+                  <path d="M14 16h1"></path>
+                  <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
+                </svg>
+                University Academic Departments
+              </span>
+              <div class="card-controls">
+                <button class="btn btn-primary" onclick="openModal('modal-add-dept')">
+                  <svg class="svg-icon btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Add Department
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Department ID</th>
+                    <th>Department Name</th>
+                    <th>Head of Department</th>
+                    <th>Degree Programs</th>
+                    <th>Active Courses</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="dept-table-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+           PANEL 4: Examination Scheduling
+           ================================================================ -->
+        <section class="module-panel" id="panel-examScheduling">
+          <div class="card">
+            <div class="card-header-bar">
+              <span class="card-title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 15 15"></polyline>
+                </svg>
+                Official Timetable & Session Administration
+              </span>
+              <div class="card-controls">
+                <button class="btn btn-primary" onclick="openModal('modal-schedule-exam')">
+                  <svg class="svg-icon btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Schedule Examination Slot
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Exam ID</th>
+                    <th>Course</th>
+                    <th>Type</th>
+                    <th>Semester</th>
+                    <th>Date</th>
+                    <th>Time Window</th>
+                    <th>Venue Hall</th>
+                    <th>Invigilator</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="exams-table-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+           PANEL 5: Rooms & Seating
+           ================================================================ -->
+        <section class="module-panel" id="panel-rooms">
+          <div class="two-col-grid">
+            <div class="card">
+              <div class="card-header-bar">
+                <span class="card-title-text">
+                  <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                    <line x1="9" y1="21" x2="9" y2="9"></line>
+                    <line x1="15" y1="9" x2="15" y2="21"></line>
+                  </svg>
+                  Examination Halls & Capacity
+                </span>
+                <div class="card-controls">
+                  <button class="btn btn-primary" onclick="openModal('modal-add-room')">
+                    <svg class="svg-icon btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                      stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Add Room
+                  </button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Room Code</th>
+                      <th>Campus Building</th>
+                      <th>Capacity</th>
+                      <th>Status</th>
+                      <th>Facilities</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="rooms-table-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header-bar">
+                <span class="card-title-text">
+                  <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                    <circle cx="9" cy="9" r="2"></circle>
+                    <circle cx="15" cy="9" r="2"></circle>
+                    <circle cx="9" cy="15" r="2"></circle>
+                    <circle cx="15" cy="15" r="2"></circle>
+                  </svg>
+                  Seating Plan (EX-2026-001)
+                </span>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Seat Number</th>
+                      <th>Student ID</th>
+                      <th>Student Name</th>
+                      <th>Hall</th>
+                      <th>Exam Session</th>
+                    </tr>
+                  </thead>
+                  <tbody id="seating-table-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+           PANEL 6: Attendance
+           ================================================================ -->
+        <section class="module-panel" id="panel-attendance">
+          <div class="kpi-grid-row">
+            <div class="stat-card">
+              <div class="stat-card-accent-bar accent-green"></div>
+              <div class="stat-label-title">Present Examinees</div>
+              <div class="stat-value-big" id="att-present-card">2</div>
+              <div class="stat-desc-sub">Verified in examination hall</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-accent-bar accent-amber"></div>
+              <div class="stat-label-title">Late Arrivals</div>
+              <div class="stat-value-big" id="att-late-card">1</div>
+              <div class="stat-desc-sub">Admitted with time penalty</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-accent-bar accent-red"></div>
+              <div class="stat-label-title">Absent Examinees</div>
+              <div class="stat-value-big" id="att-absent-card">2</div>
+              <div class="stat-desc-sub">Unreported examinees</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header-bar">
+              <span class="card-title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path>
+                  <rect x="9" y="3" width="6" height="4" rx="1"></rect>
+                  <path d="m9 14 2 2 4-4"></path>
+                </svg>
+                Examinee Roll-Call & Verification Roster
+              </span>
+              <div class="card-controls">
+                <button class="btn btn-primary" onclick="openModal('modal-record-attendance')">
+                  <svg class="svg-icon btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Record Attendance
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Student ID</th>
+                    <th>Full Name</th>
+                    <th>Department</th>
+                    <th>Recorded Status</th>
+                    <th>Timestamp</th>
+                    <th>Quick Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="attendance-table-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+           PANEL 7: Invigilators
+           ================================================================ -->
+        <section class="module-panel" id="panel-invigilators">
+          <div class="card">
+            <div class="card-header-bar">
+              <span class="card-title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                Faculty Invigilation Duty Roster
+              </span>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Faculty ID</th>
+                    <th>Faculty Name</th>
+                    <th>Email</th>
+                    <th>Designation</th>
+                    <th>Assigned Examination Slot</th>
+                    <th>Hall</th>
+                    <th>Session Time</th>
+                  </tr>
+                </thead>
+                <tbody id="invigilators-table-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+           PANEL 8: Marks & Assessment
+           ================================================================ -->
+        <section class="module-panel" id="panel-marks">
+          <div class="card">
+            <div class="card-header-bar">
+              <span class="card-title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+                Academic Assessment & Marks Registry
+              </span>
+              <div class="card-controls" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <span class="badge badge-info" style="font-size: 11px;">Theory: Att 7, Asg 5, Quizzes 15 (Q1, Q2, Q3 Avg), Pres 8, Mid 25, Fin 40 = 100 | Lab: Att 10, Rep 25, Perf 25, Fin 40 = 100</span>
+                <button class="btn btn-primary" onclick="openNewMarksModal()">
+                  <svg class="svg-icon btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Record Marks
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Course Code</th>
+                    <th>Type</th>
+                    <th>Assessment Component Breakdown</th>
+                    <th>Total Marks</th>
+                    <th>Grade</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="marks-table-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+           PANEL 9: Results & Transcripts
+           ================================================================ -->
+        <section class="module-panel" id="panel-results">
+          <div class="card">
+            <div class="card-header-bar">
+              <span class="card-title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="6"></circle>
+                  <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
+                </svg>
+                Official Semester Results & Transcripts (Semester 5)
+              </span>
+              <div class="card-controls">
+                <button class="btn btn-primary" onclick="processSemesterResults()">
+                  <svg class="svg-icon btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  Process Results
+                </button>
+                <button class="btn btn-success" id="publish-batch-btn" onclick="togglePublishResults()">
+                  <svg class="svg-icon btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 14 14"></polyline>
+                  </svg>
+                  Toggle Publish Release
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Result ID</th>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Semester</th>
+                    <th>Term GPA</th>
+                    <th>Cumulative CGPA</th>
+                    <th>Publication Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="results-table-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+           PANEL 10: Applications & Grievances
+           ================================================================ -->
+        <section class="module-panel" id="panel-applications">
+          <div class="card">
+            <div class="card-header-bar">
+              <span class="card-title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 12h-6l-2 3h-4l-2-3H2"></path>
+                  <path
+                    d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z">
+                  </path>
+                </svg>
+                Student Academic Grievances, Rechecks & Retakes
+              </span>
+              <div class="card-controls">
+                <button class="btn btn-primary" onclick="openModal('modal-submit-grievance')">
+                  <svg class="svg-icon btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Submit Application
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Application ID</th>
+                    <th>Student ID</th>
+                    <th>Category</th>
+                    <th>Related Course</th>
+                    <th>Statement / Reason</th>
+                    <th>Status</th>
+                    <th>Reviewer Remarks</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="apps-table-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+           PANEL 11: Reports & Analytics
+           ================================================================ -->
+        <section class="module-panel" id="panel-reports">
+          <div class="card">
+            <div class="card-header-bar">
+              <span class="card-title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Institutional Performance Benchmark & Export
+              </span>
+              <div class="card-controls">
+                <button class="btn btn-primary" onclick="exportAuditReport()">
+                  <svg class="svg-icon btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  Export Institutional Audit Report
+                </button>
+              </div>
+            </div>
+
+            <div class="two-col-grid" style="margin-top: 10px;">
+              <!-- Donut Chart -->
+              <div
+                style="background: var(--surface-secondary); padding: 20px; border-radius: var(--card-radius); display: flex; flex-direction: column; align-items: center;">
+                <span style="font-weight: 700; font-size: 14px; margin-bottom: 8px;">Institutional Pass vs Fail
+                  Distribution</span>
+                <div id="pass-fail-donut-chart" class="chart-container-box"></div>
+              </div>
+
+              <!-- Bar Chart -->
+              <div
+                style="background: var(--surface-secondary); padding: 20px; border-radius: var(--card-radius); display: flex; flex-direction: column; align-items: center;">
+                <span style="font-weight: 700; font-size: 14px; margin-bottom: 8px;">Departmental Average CGPA
+                  Index</span>
+                <div id="dept-cgpa-bar-chart" class="chart-container-box"></div>
+              </div>
+            </div>
+
+            <!-- Nimbra Course Performance Horizontal Progress Bars -->
+            <div
+              style="margin-top: 20px; background: var(--surface-secondary); padding: 22px; border-radius: var(--card-radius);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <span style="font-weight: 700; font-size: 14.5px; color: var(--text-primary);">Course-wise Academic Pass
+                  Rates</span>
+                <span class="badge badge-info">Semester 5 Benchmark</span>
+              </div>
+              <div class="hbars" id="course-performance-hbars"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+           PANEL 12: Activity History
+           ================================================================ -->
+        <section class="module-panel" id="panel-history">
+          <div class="card">
+            <div class="card-header-bar">
+              <span class="card-title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Institutional Audit Trail & Activity History
+              </span>
+              <div class="card-controls" style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                <input type="text" id="history-search-input" class="form-input" style="max-width: 180px; padding: 6px 12px; font-size: 12.5px;" placeholder="Search audit logs..." oninput="renderHistory()">
+                <select id="history-category-filter" class="form-select" style="max-width: 140px; padding: 6px 12px; font-size: 12.5px;" onchange="renderHistory()">
+                  <option value="ALL">All Categories</option>
+                  <option value="STUDENT">Student</option>
+                  <option value="CURRICULUM">Curriculum</option>
+                  <option value="DEPARTMENT">Department</option>
+                  <option value="FACILITY">Facility</option>
+                  <option value="SCHEDULING">Scheduling</option>
+                  <option value="ATTENDANCE">Attendance</option>
+                  <option value="ASSESSMENT">Assessment</option>
+                  <option value="RESULTS">Results</option>
+                  <option value="GRIEVANCE">Grievance</option>
+                  <option value="AUTH">Authentication</option>
+                </select>
+                <button class="btn btn-secondary btn-sm" onclick="exportAuditTrail()" title="Download complete audit log">
+                  <svg class="svg-icon btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  Export Log
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="clearAuditHistory()" title="Clear audit history">
+                  Clear Log
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Category</th>
+                    <th>Audit Event Description</th>
+                    <th>Initiator / Scope</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="history-table-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+           PANEL 13: User Management
+           ================================================================ -->
+        <section class="module-panel" id="panel-users">
+          <div class="card">
+            <div class="card-header-bar">
+              <span class="card-title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Institutional User Accounts & Permissions
+              </span>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>User ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Designation / Details</th>
+                    <th>Status</th>
+                    <th>Created Date</th>
+                  </tr>
+                </thead>
+                <tbody id="users-table-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+           PANEL 14: Settings
+           ================================================================ -->
+        <section class="module-panel" id="panel-settings">
+          <div class="card">
+            <div class="card-header-bar">
+              <span class="card-title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                  </path>
+                </svg>
+                System Preferences & Storage Maintenance
+              </span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div
+                style="display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--border-subtle);">
+                <div>
+                  <div style="font-weight: 700; font-size: 14.5px;">Visual Display Palette</div>
+                  <div style="font-size: 12.5px; color: var(--text-secondary);" id="settings-active-mode-label">Light
+                    Porcelain Theme</div>
+                </div>
+                <button class="btn btn-secondary" onclick="toggleTheme()">Toggle Light/Dark Theme</button>
+              </div>
+
+              <div
+                style="display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--border-subtle);">
+                <div>
+                  <div style="font-weight: 700; font-size: 14.5px;">Local Binary Data Backup</div>
+                  <div style="font-size: 12.5px; color: var(--text-secondary);">Snapshot storage files to ./backup/
+                    directory</div>
+                </div>
+                <button class="btn btn-success" onclick="triggerLocalBackup()">Create Backup</button>
+              </div>
+
+              <div style="padding: 14px 0;">
+                <div style="font-weight: 700; font-size: 14.5px; margin-bottom: 6px;">Academic Course Credentials</div>
+                <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.6;">
+                  <strong>Course:</strong> CSE 221 — Object Oriented Programming<br>
+                  <strong>Institution:</strong> Daffodil International University (DIU)<br>
+                  <strong>Tagline:</strong> Smart Examination Administration. Reliable Academic Assessment.<br>
+                  <strong>Framework:</strong> Native Java Swing + Web Prototype
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ====================================================================
+     MODALS
+     ==================================================================== -->
+
+  <!-- Modal: Add Student -->
+  <div class="modal-backdrop" id="modal-add-student">
+    <div class="modal-window">
+      <div class="modal-header">
+        <span class="modal-title">Add New Student Record</span>
+        <button class="btn-close-modal" aria-label="Close modal">
+          <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <form id="form-add-student">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Student ID *</label>
+            <input type="text" id="add-student-id" class="form-input" placeholder="e.g. STU006" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Full Name *</label>
+            <input type="text" id="add-student-name" class="form-input" placeholder="e.g. Shakil Mahmud" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Institutional Email *</label>
+            <input type="email" id="add-student-email" class="form-input" placeholder="shakil.stu@examsphere.diu.edu.bd"
+              required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Department *</label>
+            <select id="add-student-dept" class="form-select">
+              <option value="CSE">CSE</option>
+              <option value="SWE">SWE</option>
+              <option value="EEE">EEE</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Semester *</label>
+            <input type="number" id="add-student-sem" class="form-input" min="1" max="12" value="5" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Contact Number</label>
+            <input type="text" id="add-student-contact" class="form-input" placeholder="+8801700000000">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-close-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Student</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add Course -->
+  <div class="modal-backdrop" id="modal-add-course">
+    <div class="modal-window">
+      <div class="modal-header">
+        <span class="modal-title">Add Curriculum Course</span>
+        <button class="btn-close-modal" aria-label="Close modal">
+          <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <form id="form-add-course">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Course Code *</label>
+            <input type="text" id="add-course-code" class="form-input" placeholder="e.g. CSE221" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Course Title *</label>
+            <input type="text" id="add-course-title" class="form-input" placeholder="e.g. Object Oriented Programming" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Department *</label>
+            <input type="text" id="add-course-dept" class="form-input" placeholder="e.g. CSE" required>
+          </div>
+          <div class="two-col-grid">
+            <div class="form-group">
+              <label class="form-label">Credit Hours *</label>
+              <input type="number" id="add-course-credits" class="form-input" value="3.0" min="0.25" max="6" step="any" placeholder="e.g. 1.5, 3.0" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Course Category *</label>
+              <select id="add-course-type" class="form-select">
+                <option value="THEORY">Theory (Att 7, Asg 5, Quizzes 15, Pres 8, Mid 25, Fin 40 = 100)</option>
+                <option value="LAB">Lab / Practical (Att 10, Rep 25, Perf 25, Fin 40)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Semester *</label>
+            <input type="number" id="add-course-sem" class="form-input" value="1" min="1" max="12" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Assigned Teacher</label>
+            <input type="text" id="add-course-teacher" class="form-input" placeholder="e.g. Pranto Protim Choudhury">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-close-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Course</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add Department -->
+  <div class="modal-backdrop" id="modal-add-dept">
+    <div class="modal-window">
+      <div class="modal-header">
+        <span class="modal-title">Add Academic Department</span>
+        <button class="btn-close-modal" aria-label="Close modal">
+          <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <form id="form-add-dept">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Department ID / Code *</label>
+            <input type="text" id="add-dept-id" class="form-input" placeholder="e.g. CSE" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Department Full Name *</label>
+            <input type="text" id="add-dept-name" class="form-input" placeholder="e.g. Computer Science and Engineering" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Head of Department</label>
+            <input type="text" id="add-dept-head" class="form-input" placeholder="e.g. Dr. Sheak Rashed Haider">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Degree Programs</label>
+            <input type="text" id="add-dept-programs" class="form-input" placeholder="e.g. B.Sc. in CSE, M.Sc. in CSE">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-close-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Department</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add Room -->
+  <div class="modal-backdrop" id="modal-add-room">
+    <div class="modal-window">
+      <div class="modal-header">
+        <span class="modal-title">Add Examination Room</span>
+        <button class="btn-close-modal" aria-label="Close modal">
+          <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <form id="form-add-room">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Room Code *</label>
+            <input type="text" id="add-room-id" class="form-input" placeholder="e.g. KT-320" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Campus Building *</label>
+            <input type="text" id="add-room-building" class="form-input" placeholder="e.g. Kobi Sufia Kamal Bhaban" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Seating Capacity *</label>
+            <input type="number" id="add-room-capacity" class="form-input" value="40" min="1" max="250" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Facilities</label>
+            <input type="text" id="add-room-facilities" class="form-input" placeholder="e.g. AC, CCTV, Projector">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-close-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Room</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Record Attendance -->
+  <div class="modal-backdrop" id="modal-record-attendance">
+    <div class="modal-window">
+      <div class="modal-header">
+        <span class="modal-title">Record Examinee Attendance</span>
+        <button class="btn-close-modal" aria-label="Close modal">
+          <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <form id="form-record-attendance">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Examination Slot ID *</label>
+            <input type="text" id="att-exam-id" class="form-input" placeholder="e.g. EX-2026-001" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Student ID *</label>
+            <input type="text" id="att-student-id" class="form-input" placeholder="e.g. STU001" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Attendance Status *</label>
+            <select id="att-status" class="form-select">
+              <option value="PRESENT">PRESENT</option>
+              <option value="LATE">LATE</option>
+              <option value="ABSENT">ABSENT</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Verification Remarks</label>
+            <input type="text" id="att-remarks" class="form-input" placeholder="e.g. Hall verified / Admitted with caution">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-close-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Attendance</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Schedule Exam -->
+  <div class="modal-backdrop" id="modal-schedule-exam">
+    <div class="modal-window">
+      <div class="modal-header">
+        <span class="modal-title">Schedule Examination Slot</span>
+        <button class="btn-close-modal" aria-label="Close modal">
+          <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <form id="form-schedule-exam">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Target Course Code *</label>
+            <input type="text" id="exam-course" class="form-input" placeholder="e.g. CSE221" required list="courses-datalist">
+            <datalist id="courses-datalist"></datalist>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Examination Category *</label>
+            <select id="exam-type" class="form-select">
+              <option value="MIDTERM">MIDTERM</option>
+              <option value="FINAL">FINAL</option>
+              <option value="CLASS_TEST">CLASS_TEST</option>
+              <option value="QUIZ">QUIZ</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Target Semester *</label>
+            <input type="number" id="exam-sem" class="form-input" value="5" min="1" max="12" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Examination Date *</label>
+            <input type="date" id="exam-date" class="form-input" value="2026-11-20" required>
+          </div>
+          <div class="two-col-grid">
+            <div class="form-group">
+              <label class="form-label">Start Time *</label>
+              <input type="text" id="exam-start" class="form-input" value="10:00" placeholder="HH:mm" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">End Time *</label>
+              <input type="text" id="exam-end" class="form-input" value="12:00" placeholder="HH:mm" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Examination Hall / Room *</label>
+            <input type="text" id="exam-room" class="form-input" placeholder="e.g. KT-320" required list="rooms-datalist">
+            <datalist id="rooms-datalist"></datalist>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Invigilator Faculty</label>
+            <input type="text" id="exam-invigilator" class="form-input" placeholder="e.g. Pranto Protim Choudhury (TCH001)" value="Unassigned">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-close-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Confirm Schedule</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Enter Marks -->
+  <div class="modal-backdrop" id="modal-enter-marks">
+    <div class="modal-window">
+      <div class="modal-header">
+        <span class="modal-title" id="marks-modal-title">Enter Assessment Marks</span>
+        <button class="btn-close-modal" aria-label="Close modal">
+          <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <form id="form-enter-marks">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Student ID *</label>
+            <input type="text" id="marks-student-id" class="form-input" placeholder="e.g. STU001" required list="students-datalist">
+            <datalist id="students-datalist"></datalist>
+          </div>
+          <div class="two-col-grid">
+            <div class="form-group">
+              <label class="form-label">Target Course Code *</label>
+              <input type="text" id="marks-course-code" class="form-input" placeholder="e.g. CSE221" required list="courses-datalist" onchange="autoDetectCourseType()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Evaluation Scheme *</label>
+              <select id="marks-course-type" class="form-select" onchange="toggleMarksDistributionFields()">
+                <option value="THEORY">Theory Course (100)</option>
+                <option value="LAB">Lab / Practical (100)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Theory Distribution Container -->
+          <div id="marks-theory-container">
+            <div style="background: rgba(16, 137, 211, 0.08); border-left: 3px solid var(--primary-accent); padding: 8px 12px; border-radius: 6px; font-size: 11.5px; margin-bottom: 12px; color: var(--text-secondary); font-weight: 600;">
+              Theory Marks Scheme: Attendance (7) + Assignment (5) + Quiz Average (15) [Quiz 1, 2, 3] + Presentation (8) + Midterm (25) + Final Exam (40) = 100 Marks
+            </div>
+            <div class="two-col-grid">
+              <div class="form-group">
+                <label class="form-label">Attendance (Max 7.0)</label>
+                <input type="number" id="marks-att" class="form-input" min="0" max="7" step="any" placeholder="0 - 7">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Assignment (Max 5.0)</label>
+                <input type="number" id="marks-asg" class="form-input" min="0" max="5" step="any" placeholder="0 - 5">
+              </div>
+            </div>
+
+            <!-- Quizzes Breakdown Row -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Quiz 1 (Max 15.0)</label>
+                <input type="number" id="marks-q1" class="form-input" min="0" max="15" step="any" placeholder="0 - 15" oninput="calcTheoryQuizAverage()">
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Quiz 2 (Max 15.0)</label>
+                <input type="number" id="marks-q2" class="form-input" min="0" max="15" step="any" placeholder="0 - 15" oninput="calcTheoryQuizAverage()">
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">Quiz 3 (Max 15.0)</label>
+                <input type="number" id="marks-q3" class="form-input" min="0" max="15" step="any" placeholder="0 - 15" oninput="calcTheoryQuizAverage()">
+              </div>
+            </div>
+
+            <div class="two-col-grid">
+              <div class="form-group">
+                <label class="form-label">Quiz Average (Max 15.0) *</label>
+                <input type="number" id="marks-q-avg" class="form-input" min="0" max="15" step="any" placeholder="Auto-calculated (0 - 15)">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Presentation (Max 8.0)</label>
+                <input type="number" id="marks-pres" class="form-input" min="0" max="8" step="any" placeholder="0 - 8">
+              </div>
+            </div>
+
+            <div class="two-col-grid">
+              <div class="form-group">
+                <label class="form-label">Midterm Exam (Max 25.0)</label>
+                <input type="number" id="marks-mid" class="form-input" min="0" max="25" step="any" placeholder="0 - 25">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Final Examination (Max 40.0)</label>
+                <input type="number" id="marks-fin" class="form-input" min="0" max="40" step="any" placeholder="0 - 40">
+              </div>
+            </div>
+          </div>
+
+          <!-- Lab Distribution Container -->
+          <div id="marks-lab-container" style="display: none;">
+            <div style="background: rgba(14, 154, 120, 0.08); border-left: 3px solid var(--color-success); padding: 8px 12px; border-radius: 6px; font-size: 11.5px; margin-bottom: 12px; color: var(--text-secondary); font-weight: 600;">
+              Lab Marks Scheme: Attendance (10) + Lab Report (25) + Lab Performance (25) + Final Exam (40) = 100
+            </div>
+            <div class="two-col-grid">
+              <div class="form-group">
+                <label class="form-label">Attendance (Max 10.0)</label>
+                <input type="number" id="marks-lab-att" class="form-input" min="0" max="10" step="any" placeholder="0 - 10">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Lab Report (Max 25.0)</label>
+                <input type="number" id="marks-lab-rep" class="form-input" min="0" max="25" step="any" placeholder="0 - 25">
+              </div>
+            </div>
+            <div class="two-col-grid">
+              <div class="form-group">
+                <label class="form-label">Lab Performance (Max 25.0)</label>
+                <input type="number" id="marks-lab-perf" class="form-input" min="0" max="25" step="any" placeholder="0 - 25">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Final Exam / Viva (Max 40.0)</label>
+                <input type="number" id="marks-lab-fin" class="form-input" min="0" max="40" step="any" placeholder="0 - 40">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-close-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Assessment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Transcript Dialog -->
+  <div class="modal-backdrop" id="modal-transcript">
+    <div class="modal-window" style="max-width: 600px;">
+      <div class="modal-header">
+        <span class="modal-title">Official Academic Transcript</span>
+        <button class="btn-close-modal" aria-label="Close modal">
+          <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center; border-bottom: 2px dashed var(--border-subtle); padding-bottom: 14px;">
+          <h2 style="color: var(--primary-accent); font-size: 20px; font-weight: 800;">DAFFODIL INTERNATIONAL UNIVERSITY
+          </h2>
+          <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">Office of the Controller of
+            Examinations — Semester Grade Report</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 13px; margin: 10px 0;">
+          <div><strong>Student:</strong> <span id="transcript-student-name">Fatin Sharhad</span></div>
+          <div><strong>Student ID:</strong> <span id="transcript-student-id">STU001</span></div>
+          <div><strong>Department:</strong> <span id="transcript-student-dept">CSE</span></div>
+          <div><strong>Academic Term:</strong> Semester 5</div>
+        </div>
+
+        <table class="data-table" style="margin-top: 10px;">
+          <thead>
+            <tr>
+              <th>Course Code</th>
+              <th>Credits</th>
+              <th>Grade Point</th>
+              <th>Letter Grade</th>
+              <th>Remark</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CSE221 — Object Oriented Programming</td>
+              <td>3</td>
+              <td>4.00</td>
+              <td><span class="badge badge-success">A+</span></td>
+              <td>Outstanding</td>
+            </tr>
+            <tr>
+              <td>CSE222 — OOP Sessional Lab</td>
+              <td>1.5</td>
+              <td>3.75</td>
+              <td><span class="badge badge-success">A</span></td>
+              <td>Excellent</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Official Institutional Grading System Scale Legend -->
+        <div style="margin-top: 14px; border: 1px solid var(--border-subtle); border-radius: var(--control-radius); overflow: hidden;">
+          <div style="background: var(--surface-secondary); padding: 8px 12px; font-size: 11.5px; font-weight: 700; color: var(--primary-accent); display: flex; justify-content: space-between;">
+            <span>Official University Grading System (UGC Standard)</span>
+            <span>4.00 Grade Point Scale</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; padding: 10px; font-size: 11px; background: rgba(255,255,255,0.6);">
+            <div style="padding: 4px; border-left: 2px solid #10b981;"><strong>A+ (4.00):</strong> 80–100%<br><span style="color: var(--text-secondary);">Outstanding</span></div>
+            <div style="padding: 4px; border-left: 2px solid #10b981;"><strong>A (3.75):</strong> 75–79%<br><span style="color: var(--text-secondary);">Excellent</span></div>
+            <div style="padding: 4px; border-left: 2px solid #10b981;"><strong>A- (3.50):</strong> 70–74%<br><span style="color: var(--text-secondary);">Very Good</span></div>
+            <div style="padding: 4px; border-left: 2px solid #0284c7;"><strong>B+ (3.25):</strong> 65–69%<br><span style="color: var(--text-secondary);">Good</span></div>
+            <div style="padding: 4px; border-left: 2px solid #0284c7;"><strong>B (3.00):</strong> 60–64%<br><span style="color: var(--text-secondary);">Satisfactory</span></div>
+            <div style="padding: 4px; border-left: 2px solid #0284c7;"><strong>B- (2.75):</strong> 55–59%<br><span style="color: var(--text-secondary);">Above Average</span></div>
+            <div style="padding: 4px; border-left: 2px solid #f59e0b;"><strong>C+ (2.50):</strong> 50–54%<br><span style="color: var(--text-secondary);">Average</span></div>
+            <div style="padding: 4px; border-left: 2px solid #f59e0b;"><strong>C (2.25):</strong> 45–49%<br><span style="color: var(--text-secondary);">Below Average</span></div>
+            <div style="padding: 4px; border-left: 2px solid #f59e0b;"><strong>D (2.00):</strong> 40–44%<br><span style="color: var(--text-secondary);">Pass</span></div>
+            <div style="padding: 4px; border-left: 2px solid #ef4444;"><strong>F (0.00):</strong> 0–39%<br><span style="color: var(--text-secondary);">Fail</span></div>
+          </div>
+        </div>
+
+        <div
+          style="background: var(--surface-secondary); padding: 14px; border-radius: var(--control-radius); display: flex; justify-content: space-around; margin-top: 12px;">
+          <div><strong>Term GPA:</strong> <span id="transcript-gpa"
+              style="color: var(--color-success); font-weight: 800;">4.00</span></div>
+          <div><strong>Cumulative CGPA:</strong> <span id="transcript-cgpa"
+              style="color: var(--color-success); font-weight: 800;">3.94</span></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-close-modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="window.print()">
+          <svg class="svg-icon btn-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          Print Transcript
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Submit Grievance -->
+  <div class="modal-backdrop" id="modal-submit-grievance">
+    <div class="modal-window">
+      <div class="modal-header">
+        <span class="modal-title">Submit Academic Grievance or Recheck</span>
+        <button class="btn-close-modal" aria-label="Close modal">
+          <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <form id="form-submit-grievance">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Application Category *</label>
+            <select id="grievance-type" class="form-select">
+              <option value="RECHECK">Result Recheck Request</option>
+              <option value="RETAKE">Examination Retake Request</option>
+              <option value="MISSING_MARKS">Missing Marks Inconsistency</option>
+              <option value="COMPLAINT">General Examination Grievance</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Related Course *</label>
+            <select id="grievance-course" class="form-select">
+              <option value="CSE221">CSE221 — Object Oriented Programming</option>
+              <option value="CSE222">CSE222 — OOP Lab</option>
+              <option value="CSE223">CSE223 — Database Management Systems</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Detailed Grievance Statement *</label>
+            <textarea id="grievance-desc" class="form-textarea"
+              placeholder="Detail the discrepancy, question number, or reason..." required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-close-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast-notification"></div>
+
+  <!-- JavaScript Application Logic -->
+  <script src="app.js"></script>
+
+</body>
+
+</html>
