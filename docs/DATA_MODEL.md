@@ -152,8 +152,8 @@ EduAsset employs native **Java Object Serialization** to persist domain state to
 // Sample Serialized User Record (Student)
 {
   "userId": "STU001",
-  "fullName": "Aminul Islam",
-  "email": "aminul.stu@examsphere.diu.edu.bd",
+  "fullName": "Fatin Sharhad",
+  "email": "252-15-869@diu.edu.bd",
   "role": "STUDENT",
   "department": "CSE",
   "program": "B.Sc. in CSE",

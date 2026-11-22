@@ -394,10 +394,10 @@ public void initializeDefaultUsers() // creates demo admin, teacher, student, co
 ```
 
 **Demo Users (created by initializeDefaultUsers):**
-- Admin: userId="ADMIN001", password="admin123", name="Dr. Rashid Ahmed", designation="Examination Controller"
-- Teacher: userId="TCH001", password="teacher123", name="Prof. Fatima Noor", dept="CSE"
-- Student: userId="STU001", password="student123", name="Aminul Islam", dept="CSE", semester=5
-- Coordinator: userId="COORD001", password="coord123", name="Dr. Kamal Hossain", dept="CSE"
+- Admin: userId="ADMIN001", password="admin123", name="Mr. Md. Ashraful Islam Talukder", email="ashrafulislam.cse@diu.edu.bd", designation="Examination Controller"
+- Coordinator: userId="COORD001", password="coord123", name="Dewan Mamun Raza", email="dewan.cse@diu.edu.bd", dept="CSE"
+- Teacher: userId="TCH001", password="teach123" / "teacher123", name="Pranto Protim Choudhury", email="prantoprotimchoudhury.cse@diu.edu.bd", dept="CSE"
+- Student: userId="STU001" (ID: 252-15-869), password="student123", name="Fatin Sharhad", email="252-15-869@diu.edu.bd", dept="CSE", semester=5
 
 ### StudentService.java
 ```java

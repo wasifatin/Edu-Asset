@@ -104,13 +104,13 @@ On the very first launch, `FileStorageService` checks if persistent `.dat` files
 
 ### Pre-Configured Demonstration Accounts
 
-| User Role | User ID | Password | Full Name | Department / Role Scope |
-|---|---|---|---|---|
-| **Examination Controller** | `ADMIN001` | `admin123` | Dr. Rashid Ahmed | Office of the Controller |
-| **Department Coordinator** | `COORD001` | `coord123` | Dr. Kamal Hossain | Computer Science & Engineering |
-| **Faculty / Invigilator** | `TCH001` | `teacher123` | Prof. Fatima Noor | Computer Science & Engineering |
-| **Student** | `STU001` | `student123` | Aminul Islam | CSE (Semester 5) |
-| **Student (Alternative)** | `STU002` | `student123` | Nusrat Jahan | CSE (Semester 5) |
+| Role / Designation | Full Name | Institutional Email | User ID | Password | Department / Role Scope |
+|---|---|---|---|---|---|
+| **Examination Controller** | **Mr. Md. Ashraful Islam Talukder** | `ashrafulislam.cse@diu.edu.bd` | `ADMIN001` | `admin123` | Office of the Controller • Full Administrative Access |
+| **Department Coordinator** | **Dewan Mamun Raza** | `dewan.cse@diu.edu.bd` | `COORD001` | `coord123` | Computer Science & Engineering • Curriculums & Schedules |
+| **Faculty / Invigilator** | **Pranto Protim Choudhury** | `prantoprotimchoudhury.cse@diu.edu.bd` | `TCH001` | `teach123` / `teacher123` | Computer Science & Engineering • Marks Entry & Roll Call |
+| **Student Examinee** | **Fatin Sharhad** | `252-15-869@diu.edu.bd` | `STU001` / `252-15-869` | `student123` | CSE (Semester 5) • Grades & Grievances |
+| **Student (Alternative)** | **Nusrat Jahan** | `nusrat.stu@examsphere.diu.edu.bd` | `STU002` | `student123` | CSE (Semester 5) • Demo Student |
 
 ---
 

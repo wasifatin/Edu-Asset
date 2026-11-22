@@ -201,15 +201,19 @@ java -cp out com.examsphere.EduAssetTest
 
 ## 9. Demonstration Login Credentials
 
-EduAsset automatically initializes the following pre-configured demonstration accounts on initial launch:
+EduAsset automatically initializes pre-configured demonstration accounts on initial launch for both the native **Java Swing Desktop Application** and the **Interactive Web-Based Dashboard**. Users can authenticate using either their **Institutional Email** or **User ID**:
 
-| User Role | User ID | Password | Full Name | Department / Scope |
-|---|---|---|---|---|
-| **Examination Controller (Admin)** | `ADMIN001` | `admin123` | Dr. Rashid Ahmed | Office of the Controller |
-| **Department Coordinator** | `COORD001` | `coord123` | Dr. Kamal Hossain | Computer Science & Eng. |
-| **Teacher / Invigilator** | `TCH001` | `teacher123` | Prof. Fatima Noor | Computer Science & Eng. |
-| **Student** | `STU001` | `student123` | Aminul Islam | CSE (Semester 5) |
-| **Student (Alternative)** | `STU002` | `student123` | Nusrat Jahan | CSE (Semester 5) |
+| Role / Designation | Full Name | Institutional Email | User ID | Password | Scope & Primary Authorities |
+|---|---|---|---|---|---|
+| **Examination Controller (Admin)** | **Mr. Md. Ashraful Islam Talukder** | `ashrafulislam.cse@diu.edu.bd` | `ADMIN001` | `admin123` | Office of the Controller • Full System Authority, Audit Trails, Official Result Publication & Grading Governance |
+| **Department Coordinator** | **Dewan Mamun Raza** | `dewan.cse@diu.edu.bd` | `COORD001` | `coord123` | Computer Science & Engineering • Curriculum Management, Exam Scheduling, Room & Seat Allocation |
+| **Faculty Member / Invigilator** | **Pranto Protim Choudhury** | `prantoprotimchoudhury.cse@diu.edu.bd` | `TCH001` | `teach123` / `teacher123` | CSE Department • Marks Entry (Continuous Assessments & Final Exams), Hall Supervision, Attendance Roll Call |
+| **Student Examinee** | **Fatin Sharhad** | `252-15-869@diu.edu.bd` | `STU001` / `252-15-869` | `student123` | B.Sc. in CSE (Semester 5) • Semester Results, Official Academic Transcripts, Continuous Evaluation Review & Grievance Lodging |
+| **Student (Alternative Demo)** | **Nusrat Jahan** | `nusrat.stu@examsphere.diu.edu.bd` | `STU002` | `student123` | B.Sc. in CSE (Semester 5) • Secondary Student Testing Persona |
+
+> [!NOTE]
+> - **Dual Identifier Authentication:** In both the desktop application and web portal, you may sign in with either your **User ID** (e.g. `ADMIN001`) or your **Institutional Email** (e.g. `ashrafulislam.cse@diu.edu.bd`).
+> - **Web Portal Quick Roleplay:** The web sign-in portal includes a quick-selector dropdown in the top corner to automatically fill credentials and switch personas with a single click.
 
 ---
 
